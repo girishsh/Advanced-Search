@@ -4,8 +4,8 @@ Hello
 <form>
 	<div>
 		<select class="brand">
-			<option value="1">Sony</option>
-			<option value=2>HTC</option>
+			<option value="sony">Sony</option>
+			<option value="htc">HTC</option>
 		</select>
 	</div>
 	<div>
@@ -17,8 +17,9 @@ Hello
 </form>
 </div>
 <script type="text/javascript">
+	jQuery.noConflict();
 	jQuery(function() {
-		
+		alart("Hello");
 	});
 
 

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <advsearch_index_index>
+      </reference>
+        <reference name="content">
+            <block type="advsearch/search" name="advsearch" template="advsearch/search.phtml">
+            </block>
+        </reference>
+    </advsearch_index_index>
+</layout> 
