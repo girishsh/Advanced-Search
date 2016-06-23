@@ -1,0 +1,34 @@
+
+<div>
+<form>
+	<div>
+		<select class="brandselect">
+			<option value="sony">Sony</option>
+			<option value="htc">HTC</option>
+		</select>
+	</div>
+	<div>
+		<select id="selectmodels">
+			<option value="">Select the Model</option>
+		</select>
+	</div>
+	<div id="div121">
+		
+	</div>
+</form>
+</div>
+<script type="text/javascript">
+	//jQuery.noConflict();
+	jQuery(function($){
+        //alert("Hello");
+        
+        $(".brandselect").change(function(e){
+        	//alert("Hello");
+            getmodeldata();
+        });
+    });
+
+
+
+
+</script>
