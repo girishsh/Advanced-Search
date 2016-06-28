@@ -4,21 +4,10 @@ class Crazymindz_Advsearch_Block_Search extends Mage_Checkout_Block_Cart_Abstrac
 	public function _prepareLayout() {
 		return parent::_prepareLayout();
     }
-    
-    public function getBrands() { 
-        
-    }
-    
-	public function getSendUrl() {
-        return $this->getUrl('*/*/send');
-    }
-    
-    public function getModels() {
-    	return Mage::getSingleton('customer/session')->getCustomer()->getName();
-    }
-
-    public function getTypes() { 
-        
+    public function getTwoLevelCategoties() {
+        $cats = Mage::getModel('advsearch/search')->getCategoryData(2);
+        $result = Zend_Json::encode($cats); 
+        return $result;
     }
 
 }

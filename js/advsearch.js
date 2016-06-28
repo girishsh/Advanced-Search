@@ -1,13 +1,14 @@
 var BASE_URL="<?php echo Mage::getBaseUrl();?>";
 //jQuery.noConflict();
-function getmodeldata() {
+function getmodelsdata() {
+	alert(jQuery("#brandselect")..value);
 	jQuery.ajax( {
-		    url : "advsearch/index/getdata",
+		    url : "advsearch/index/models",
 		    dataType : 'json',
 		    data: jQuery(this).serialize(),
 		    success : function(data) {
 		    	alert("success");
-		    	console.log(data.test1);
+		    	//console.log(data.test1);
 		    	jQuery('#selectmodels').find('option').remove().end().append('<option value="">Select the model</option>');
 		    	//jQuery('#selectmodels').append(jQuery('<option>', { value : key }).text(value));
 		    	jQuery.each(data, function(key, value) {
@@ -20,3 +21,5 @@ function getmodeldata() {
 		    }
 	});
 }
+
+//function get

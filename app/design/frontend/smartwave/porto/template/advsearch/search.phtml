@@ -1,15 +1,21 @@
-
+<?php
+$categories = $this->getTwoLevelCategoties();
+?>
 <div>
 <form>
 	<div>
-		<select class="brandselect">
-			<option value="sony">Sony</option>
-			<option value="htc">HTC</option>
+		<select id="brandselect">
+			<option value="">Select Brand</option>
 		</select>
 	</div>
 	<div>
 		<select id="selectmodels">
-			<option value="">Select the Model</option>
+			<option value="">Select Model</option>
+		</select>
+	</div>
+	<div>
+		<select id="selecttypes">
+			<option value="">Select Type</option>
 		</select>
 	</div>
 	<div id="div121">
@@ -18,17 +24,44 @@
 </form>
 </div>
 <script type="text/javascript">
-	//jQuery.noConflict();
 	jQuery(function($){
-        //alert("Hello");
+        cats = <?php echo $categories; ?>;
+		for (var i=0;i<cats.sub.length;++i)
+		{
+			$('#brandselect').append('<option value='+cats.sub[i].catid +'>'+cats.sub[i].name +'</options>');
+		}
         
-        $(".brandselect").change(function(e){
-        	//alert("Hello");
-            getmodeldata();
+        $("#brandselect").change(function(e){
+            $.ajax( {
+		    url : "advsearch/index/getmodels/id/"+$("#brandselect").val(),
+		    dataType : 'json',
+		    data: $(this).serialize(),
+		    success : function(data) {
+		    	$('#selectmodels').find('option').remove().end().append('<option value="">Select Model</option>');
+					for (var i=0;i<data.sub.length;++i)
+					{
+						$('#selectmodels').append('<option value='+data.sub[i].catid +'>'+data.sub[i].name +'</options>');
+					}
+		    	}
+			});
         });
+
+
+        $("#selectmodels").change(function(e){
+            $.ajax( {
+		    url : "advsearch/index/gettypes/id/"+$("#selectmodels").val(),
+		    dataType : 'json',
+		    data: $(this).serialize(),
+		    success : function(data) {
+		    	$('#selecttypes').find('option').remove().end().append('<option value="">Select Type</option>');
+					for (var i=0;i<data.sub.length;++i)
+					{
+						$('#selecttypes').append('<option value='+data.sub[i].catid +'>'+data.sub[i].name +'</options>');
+					}
+		    	}
+			});
+        });
+
     });
-
-
-
 
 </script>
