@@ -30,13 +30,16 @@ $categories = $this->getTwoLevelCategoties();
 		{
 			$('#brandselect').append('<option value='+cats.sub[i].catid +'>'+cats.sub[i].name +'</options>');
 		}
-        
+        $('#selectmodels').prop('disabled', true);
+		$('#selecttypes').prop('disabled', true);
+
         $("#brandselect").change(function(e){
             $.ajax( {
 		    url : "advsearch/index/getmodels/id/"+$("#brandselect").val(),
 		    dataType : 'json',
 		    data: $(this).serialize(),
 		    success : function(data) {
+		    	$('#selectmodels').prop('disabled', false);
 		    	$('#selectmodels').find('option').remove().end().append('<option value="">Select Model</option>');
 					for (var i=0;i<data.sub.length;++i)
 					{
@@ -53,14 +56,23 @@ $categories = $this->getTwoLevelCategoties();
 		    dataType : 'json',
 		    data: $(this).serialize(),
 		    success : function(data) {
+		    	$('#selecttypes').prop('disabled', false);
 		    	$('#selecttypes').find('option').remove().end().append('<option value="">Select Type</option>');
 					for (var i=0;i<data.sub.length;++i)
 					{
-						$('#selecttypes').append('<option value='+data.sub[i].catid +'>'+data.sub[i].name +'</options>');
+						$('#selecttypes').append('<option value='+data.sub[i].catid +' data-caturl='+data.sub[i].caturl+'>'+data.sub[i].name +'</options>');
 					}
 		    	}
 			});
         });
+
+		$("#selecttypes").change(function(e){
+			$('#brandselect').prop('disabled', true);
+			$('#selectmodels').prop('disabled', true);
+			$('#selecttypes').prop('disabled', true);
+            window.location = $(this).find(':selected').data("caturl");
+        });
+
 
     });
 

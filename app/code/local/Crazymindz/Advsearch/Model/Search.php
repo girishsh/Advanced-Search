@@ -54,6 +54,6 @@ class Crazymindz_Advsearch_Model_Search extends Mage_Core_Model_Abstract
 	}
 
 	public function hpCatDetails($cat){
-	    return array('catid' => $cat->getId(), 'name'=>$cat->getName());
+	    return array('catid' => $cat->getId(), 'name'=>$cat->getName(), "caturl"=>$cat->getUrl());
 	}
 }
