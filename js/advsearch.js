@@ -22,4 +22,4 @@ function getmodelsdata() {
 	});
 }
 
-//function get
+//function get the values
